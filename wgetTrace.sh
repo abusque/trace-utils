@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 
 lttng create
 lttng enable-event -k -a
