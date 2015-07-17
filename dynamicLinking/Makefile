@@ -12,8 +12,17 @@ libhello.o: libhello.c
 tp.o: tp.c
 	$(CC) $(CFLAGS) -fPIC -c -I. -o $@ $<
 
-main.out: main.c
-	$(CC) $(CFLAGS) -ldl -o $@ $<
+tp2.o: tp2.c
+	$(CC) $(CFLAGS) -c -I. -o $@ $<
+
+utils.o: utils.c
+	$(CC) $(CFLAGS) -c -I. -o $@ $<
+
+main.o: main.c
+	$(CC) $(CFLAGS) -c -I. -o $@ $<
+
+main.out: main.o utils.o tp2.o
+	$(CC) $(CFLAGS) -llttng-ust -ldl -o $@ $?
 
 .PHONY: clean
 clean:
